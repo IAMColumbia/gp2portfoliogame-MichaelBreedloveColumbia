@@ -1,9 +1,1 @@
-+ Massively improved gunplay and movement.
-+ Improved floor generation and added the ability to climb floors.
-+ Added support for carrying and switching between multiple weapons and ammo types.
-+ Added clip capacity and ammo reserves (as opposed to infinite ammo).
-+ Added weapon reloading.
-+ Added the ability to load any ammo type into any weapon.
-+ Added the ability to load multiple different ammo types into the same clip.
-+ Added "ammo weight" which dictates how much space a given type of ammo takes up in a clip.
-+ Added "ammo freshness", which adds a stacking damage bonus to each new ammo type fired by the same clip in a row.
+Release Notes version 3 Final
