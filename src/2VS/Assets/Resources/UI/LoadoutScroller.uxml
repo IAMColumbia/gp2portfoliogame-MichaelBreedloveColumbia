@@ -1,5 +1,0 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <ui:VisualElement name="Top" style="left: auto; top: auto; right: auto; bottom: auto; height: 64px; align-items: stretch; justify-content: flex-start; width: 150px; translate: 889px 320px;" />
-    <ui:VisualElement name="Middle" style="left: auto; top: auto; right: auto; bottom: auto; height: 64px; align-items: stretch; justify-content: flex-start; width: 150px; translate: 889px 320px;" />
-    <ui:VisualElement name="Bottom" style="left: auto; top: auto; right: auto; bottom: auto; height: 64px; align-items: stretch; justify-content: flex-start; width: 150px; translate: 889px 320px;" />
-</ui:UXML>
