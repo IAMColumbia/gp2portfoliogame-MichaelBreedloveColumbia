@@ -1,20 +1,25 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+public enum GameState { ACTIVE, VICTORY, DEFEAT }
+
 public class GameManager : MonoBehaviour
 {
     public Player player;   //The player
-    public WaveManager WaveManager; //Wave manager
-
-    public Text HUD;
+    GameState State = GameState.ACTIVE;
+    [SerializeField] AudioClip WinSound;
+    [SerializeField] AudioClip LoseSound;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        player.PlayerKilled += OnPlayerKilled;
+        player.PlayerWon += OnPlayerWon;
     }
 
     // Update is called once per frame
@@ -25,22 +30,21 @@ public class GameManager : MonoBehaviour
 
     void DetectGameState()
     {
-        if ((player == null || WaveManager.State == GameState.VICTORY) && Input.GetKeyDown(KeyCode.Space))
+        if ((State != GameState.ACTIVE) && Input.GetKeyDown(KeyCode.Space))
         {
             SceneManager.LoadScene("MainGame");
         }
+    }
 
-        if (player == null)
-        {
-            HUD.text = "You died! Press space to try again.";
-        }
-        else if (WaveManager.State == GameState.VICTORY)
-        {
-            HUD.text = "You won! Press space to play again.";
-        }
-        else
-        {
-            HUD.text = $"Wave: {WaveManager.CurrentWave}/{WaveManager.Waves.Length}";
-        }
+    public void OnPlayerKilled(object sender, EventArgs e)
+    {
+        State = GameState.DEFEAT;
+        AudioSource.PlayClipAtPoint(LoseSound, Camera.main.transform.position, 0.5f);
+    }
+
+    public void OnPlayerWon(object sender, EventArgs e)
+    {
+        State = GameState.VICTORY;
+        AudioSource.PlayClipAtPoint(WinSound, Camera.main.transform.position);
     }
 }

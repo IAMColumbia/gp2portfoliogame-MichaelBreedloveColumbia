@@ -34,6 +34,8 @@ public class Player : LivingEntity
     public GameObject DashTrail; //Trail used while dashing, for cosmetic effect
 
     public event EventHandler FloorClimbed;
+    public event EventHandler PlayerKilled;
+    public event EventHandler PlayerWon;
     public int CurrentFloor = 0;
 
     //Private variables:
@@ -53,6 +55,8 @@ public class Player : LivingEntity
     float CameraShakeForce = 0;
     float CameraShakeReduction = 0;
     public float MaxCamShake = 2.0f;
+
+    [SerializeField] AudioClip DashSound;
 
     // Start is called before the first frame update
     public override void Start()
@@ -228,6 +232,10 @@ public class Player : LivingEntity
             CurrentTrail.GetComponent<Trail>().spriteRenderer = Renderer;
             CurrentTrail.GetComponent<Trail>().Active = true;
             FindObjectOfType<Utility>().SlowTime(0.8f, DashTime);
+
+            AudioSource.PlayClipAtPoint(DashSound, transform.position);
+
+            RemainingDashCooldown = DashCooldown;
         }
     }
 
@@ -334,6 +342,12 @@ public class Player : LivingEntity
         base.TakeDamage(damage, IgnoreIFrames);
     }
 
+    public override void Die()
+    {
+        base.Die();
+        PlayerKilled.Invoke(this, new EventArgs());
+    }
+
     public void DropWeapon()
     {
         if (CurrentWeapon == null)
@@ -363,5 +377,10 @@ public class Player : LivingEntity
             CameraShakeForce = MaxCamShake;
 
         CameraShakeReduction = reductionperframe;
+    }
+
+    public void Win()
+    {
+        PlayerWon.Invoke(this, new EventArgs());
     }
 }

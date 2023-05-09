@@ -127,6 +127,8 @@ MonoBehaviour:
   - {fileID: 8971843404226249411, guid: 58561290b8fea1d4492b51f6a8f4ebab, type: 3}
   - {fileID: 8971843404226249411, guid: eddac46373cc42b49a91b13bb50cb8b2, type: 3}
   AmmoIndex: 0
+  MaxCamShake: 2
+  DashSound: {fileID: 8300000, guid: 329a9513f5aa3034ca5363cda65bbc03, type: 3}
 --- !u!61 &937788658095678175
 BoxCollider2D:
   m_ObjectHideFlags: 0

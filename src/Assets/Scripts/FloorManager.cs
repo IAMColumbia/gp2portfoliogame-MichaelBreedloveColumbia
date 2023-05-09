@@ -42,15 +42,17 @@ public class FloorManager : MonoBehaviour
     //Advances to the next floor.
     public void ClimbFloor(object sender, EventArgs e)
     {
-        if (player.CurrentFloor >= Floors.Length) //Go back to the first floor and infinitely loop the game.
+        if (player.CurrentFloor >= Floors.Length) //You won!
         {
-            player.CurrentFloor = 0;
+            player.Win();
         }
-
-        floor = player.CurrentFloor;
-        Debug.Log("Floors.length = " + Floors.Length);
-        Debug.Log("Floor = " + floor);
-        MakeMap();
+        else
+        {
+            floor = player.CurrentFloor;
+            Debug.Log("Floors.length = " + Floors.Length);
+            Debug.Log("Floor = " + floor);
+            MakeMap();
+        }
     }
 
     public void Start()

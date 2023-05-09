@@ -73,7 +73,7 @@ public class Enemy : LivingEntity
         GetComponent<Rigidbody2D>().velocity = new Vector2(Direction.x, Direction.y).normalized * Speed;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         Player other = collision.gameObject.GetComponent<Player>();
         if (other != null && other.RemainingInvulnTime <= 0)
